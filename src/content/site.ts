@@ -1,11 +1,11 @@
 /*
- * All landing-page copy lives here. It's placeholder: the structure mirrors the
- * sections the design needs, and the words should be replaced once the product
- * scope is settled. No metrics, customer names, or press — add real ones or none.
+ * All landing-page copy lives here. Hero, proof, problem, and steps carry the
+ * final SalesTarget copy; the sections after them are still placeholder.
+ * The proof stats are product claims: keep them sourced before launch.
  */
 
 export const site = {
-  name: "sale.leads",
+  name: "SalesTarget",
   nav: {
     features: {
       label: "Features",
@@ -22,11 +22,35 @@ export const site = {
   },
 
   hero: {
-    tag: "Lead intelligence for sales teams",
-    headline: "Find. Qualify. Enrich. Route. Close.",
-    body: "Source, qualify, and route sales leads from one workspace, so reps spend their time in conversations instead of spreadsheets.",
+    tag: "AI Sales Operating System",
+    headline: ["Find buyers.", "Personalize outreach.", "Book meetings."],
+    body: "Everything your sales team needs to find qualified leads, generate personalized outreach, and manage deals — powered by AI in one workspace.",
     primary: { label: "Start free trial", href: "/signup" },
-    secondary: { label: "See the pipeline", href: "#pipeline" },
+    secondary: { label: "Book a demo", href: "/demo" },
+    points: ["Launch campaigns in minutes", "AI-powered personalization"],
+  },
+
+  proof: {
+    lead: "Trusted by founders, agencies, and fast-growing teams.",
+    stats: [
+      { value: 840, suffix: "M+", label: "Professional profiles" },
+      { value: 96, suffix: "M+", label: "Company records" },
+      { value: 50, suffix: "+", label: "Data sources" },
+      { value: 1, suffix: "", label: "Unified outbound workspace" },
+    ],
+  },
+
+  problem: {
+    headline: "Stop juggling five different sales tools.",
+    body: "Modern outbound teams waste hours switching between prospecting, enrichment, outreach, CRM, and AI writing tools.",
+    resolution: "SalesTarget brings your entire outbound workflow into one AI-powered workspace.",
+    tools: ["Prospecting", "Enrichment", "Outreach", "CRM", "AI writing"],
+    comparison: [
+      { without: "Multiple subscriptions.", with: "One platform." },
+      { without: "Manual lead research.", with: "AI finds ideal buyers." },
+      { without: "Generic cold emails.", with: "Personalized outreach instantly." },
+      { without: "Scattered CRM.", with: "Everything in one pipeline." },
+    ],
   },
 
   products: [
@@ -92,12 +116,28 @@ export const site = {
   },
 
   steps: {
-    headline: "How It Works",
+    headline: "Three steps from search to meeting.",
     items: [
-      { tag: "Source", title: "Define who you sell to", body: "Describe your ideal customer once: industry, size, region, roles. Every lead is measured against it." },
-      { tag: "Qualify", title: "Let the list sort itself", body: "Leads are enriched, deduplicated, and scored as they arrive, so the best ones rise to the top." },
-      { tag: "Route", title: "Put leads in front of reps", body: "Qualified leads go to the right owner and into your CRM, with the context needed for a first message." },
+      { title: "Describe your buyer", body: "Search using natural language instead of filters." },
+      { title: "AI builds your outreach", body: "Generate personalized emails and LinkedIn messages for every lead." },
+      { title: "Launch and track campaigns", body: "Monitor replies, meetings, and pipeline from one dashboard." },
     ],
+    /* Illustrations inside the cards: fictional people and companies from src/data. */
+    demo: {
+      query: "VP Sales at B2B companies in Europe",
+      filters: ["Role · VP Sales", "Region · EMEA", "Model · B2B"],
+      results: [
+        { name: "Priya Patel", title: "VP of Sales", company: "Tessaract Payments", fit: 94 },
+        { name: "Jonas Fischer", title: "VP of Sales", company: "Quillfeather Legal Tech", fit: 88 },
+        { name: "Elena Rossi", title: "VP of Sales", company: "Halcyon Learning", fit: 81 },
+      ],
+      message: {
+        to: "Priya Patel",
+        subject: "Tessaract's Madrid launch",
+        opening: "Hi Priya — congrats on opening the Madrid office.",
+      },
+      campaignId: "camp_002",
+    },
   },
 
   closing: {

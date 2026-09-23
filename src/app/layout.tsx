@@ -12,7 +12,7 @@ const sans = IBM_Plex_Sans({ subsets: ["latin"], weight: ["400", "500", "700"], 
 const mono = IBM_Plex_Mono({ subsets: ["latin"], weight: ["400", "500"], variable: "--font-mono-face" });
 
 export const metadata: Metadata = {
-  title: site.name,
+  title: { default: `${site.name} — AI Sales Operating System`, template: `%s · ${site.name}` },
   description: site.hero.body,
 };
 
