@@ -1,0 +1,203 @@
+{
+  "_note": "Mock data. Every figure is derived from leads.json and campaigns.json.",
+  "generatedAt": "2026-09-23",
+  "weeklyRange": {
+    "from": "2026-06-29",
+    "to": "2026-09-20"
+  },
+  "kpis": {
+    "totalLeads": 120,
+    "qualifiedLeads": 51,
+    "pipelineValue": 1733000,
+    "wonValue": 492000,
+    "winRate": 0.577,
+    "meetingsBooked": 63,
+    "avgLeadScore": 58.2
+  },
+  "weekly": [
+    {
+      "weekStart": "2026-06-29",
+      "leads": 2,
+      "qualified": 2,
+      "won": 2
+    },
+    {
+      "weekStart": "2026-07-06",
+      "leads": 4,
+      "qualified": 2,
+      "won": 0
+    },
+    {
+      "weekStart": "2026-07-13",
+      "leads": 4,
+      "qualified": 3,
+      "won": 2
+    },
+    {
+      "weekStart": "2026-07-20",
+      "leads": 8,
+      "qualified": 3,
+      "won": 2
+    },
+    {
+      "weekStart": "2026-07-27",
+      "leads": 6,
+      "qualified": 4,
+      "won": 2
+    },
+    {
+      "weekStart": "2026-08-03",
+      "leads": 9,
+      "qualified": 5,
+      "won": 2
+    },
+    {
+      "weekStart": "2026-08-10",
+      "leads": 10,
+      "qualified": 3,
+      "won": 1
+    },
+    {
+      "weekStart": "2026-08-17",
+      "leads": 14,
+      "qualified": 8,
+      "won": 1
+    },
+    {
+      "weekStart": "2026-08-24",
+      "leads": 10,
+      "qualified": 6,
+      "won": 1
+    },
+    {
+      "weekStart": "2026-08-31",
+      "leads": 15,
+      "qualified": 5,
+      "won": 0
+    },
+    {
+      "weekStart": "2026-09-07",
+      "leads": 13,
+      "qualified": 4,
+      "won": 0
+    },
+    {
+      "weekStart": "2026-09-14",
+      "leads": 12,
+      "qualified": 2,
+      "won": 0
+    }
+  ],
+  "funnel": [
+    {
+      "stage": "Leads",
+      "count": 120
+    },
+    {
+      "stage": "Contacted",
+      "count": 103
+    },
+    {
+      "stage": "Qualified",
+      "count": 51
+    },
+    {
+      "stage": "Proposal",
+      "count": 26
+    },
+    {
+      "stage": "Won",
+      "count": 15
+    }
+  ],
+  "bySource": [
+    {
+      "source": "Website",
+      "leads": 29,
+      "qualified": 15,
+      "won": 4
+    },
+    {
+      "source": "LinkedIn",
+      "leads": 27,
+      "qualified": 13,
+      "won": 7
+    },
+    {
+      "source": "Import",
+      "leads": 18,
+      "qualified": 8,
+      "won": 2
+    },
+    {
+      "source": "Cold outbound",
+      "leads": 17,
+      "qualified": 5,
+      "won": 1
+    },
+    {
+      "source": "Referral",
+      "leads": 15,
+      "qualified": 6,
+      "won": 0
+    },
+    {
+      "source": "Event",
+      "leads": 14,
+      "qualified": 4,
+      "won": 1
+    }
+  ],
+  "byOwner": [
+    {
+      "owner": "Marcus Reid",
+      "leads": 38,
+      "won": 4,
+      "pipelineValue": 647000
+    },
+    {
+      "owner": "Jonas Larsen",
+      "leads": 29,
+      "won": 5,
+      "pipelineValue": 443000
+    },
+    {
+      "owner": "Sofia Duarte",
+      "leads": 26,
+      "won": 4,
+      "pipelineValue": 416000
+    },
+    {
+      "owner": "Ava Chen",
+      "leads": 27,
+      "won": 2,
+      "pipelineValue": 227000
+    }
+  ],
+  "byStatus": [
+    {
+      "status": "new",
+      "count": 17
+    },
+    {
+      "status": "contacted",
+      "count": 41
+    },
+    {
+      "status": "qualified",
+      "count": 25
+    },
+    {
+      "status": "proposal",
+      "count": 11
+    },
+    {
+      "status": "won",
+      "count": 15
+    },
+    {
+      "status": "lost",
+      "count": 11
+    }
+  ]
+}

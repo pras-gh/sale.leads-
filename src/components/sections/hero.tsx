@@ -1,7 +1,7 @@
 import { site } from "@/content/site";
 import { Button } from "../button";
 import { BracketTag, Section } from "../primitives";
-import { Reveal } from "../reveal";
+import { Reveal } from "@/components/animations/reveal";
 
 export function Hero() {
   const { tag, headline, body, primary, secondary } = site.hero;

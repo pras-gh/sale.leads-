@@ -119,7 +119,7 @@ export function MobileMenuPanel({ open, onClose }: { open: boolean; onClose: (re
                           onClick={close}
                           className="flex h-full flex-col gap-1.5 px-3 py-4 transition-colors active:bg-mist"
                         >
-                          <span className="label text-xs text-accent-strong">{String(i + 1).padStart(2, "0")}</span>
+                          <span className="label text-xs text-brand-strong">{String(i + 1).padStart(2, "0")}</span>
                           <span className="text-lg leading-snug">{item.title}</span>
                         </Link>
                       </li>
@@ -141,7 +141,7 @@ export function MobileMenuPanel({ open, onClose }: { open: boolean; onClose: (re
               <li key={item.href} className="m-item" style={stagger(i + 1)}>
                 <Link href={item.href} onClick={close} className={`${rowClass} arrow-link`}>
                   {item.label}
-                  <ArrowRight className="arrow text-muted" />
+                  <ArrowRight className="arrow text-muted-foreground" />
                 </Link>
               </li>
             ))}
@@ -152,7 +152,7 @@ export function MobileMenuPanel({ open, onClose }: { open: boolean; onClose: (re
           <Button href={cta.href} className="w-full">
             {cta.label}
           </Button>
-          <p className="label mt-5 text-center text-xs text-muted">{site.name}</p>
+          <p className="label mt-5 text-center text-xs text-muted-foreground">{site.name}</p>
         </div>
       </div>
     </div>

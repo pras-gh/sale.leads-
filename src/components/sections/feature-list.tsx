@@ -1,8 +1,8 @@
 import { site } from "@/content/site";
 import { Section } from "../primitives";
-import { Reveal } from "../reveal";
+import { Reveal } from "@/components/animations/reveal";
 
-/** Dark numbered list: accent numerals, uppercase display titles, a rule that draws in under each row. */
+/** Dark numbered list: brand numerals, uppercase display titles, a rule that draws in under each row. */
 export function FeatureList() {
   const { headline, items } = site.pipeline;
   return (
@@ -20,7 +20,7 @@ export function FeatureList() {
             className="draw-rule grid gap-4 py-9 last:after:hidden md:grid-cols-5 md:items-center md:py-[2.625rem]"
           >
             <div className="flex items-baseline gap-5 md:col-span-3 md:gap-0">
-              <span className="label w-16 shrink-0 text-sm text-accent-strong">
+              <span className="label w-16 shrink-0 text-sm text-brand-strong">
                 {String(i + 1).padStart(2, "0")}
               </span>
               <h3 className="text-d4 uppercase">{item.title}</h3>

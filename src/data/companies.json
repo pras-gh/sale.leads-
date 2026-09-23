@@ -1,0 +1,128 @@
+[
+  {
+    "id": "cmp_001",
+    "name": "Brightfold Logistics",
+    "domain": "brightfold.example",
+    "industry": "Logistics",
+    "employees": "201-500",
+    "region": "NA",
+    "country": "United States"
+  },
+  {
+    "id": "cmp_002",
+    "name": "Kestrelline Analytics",
+    "domain": "kestrelline.example",
+    "industry": "SaaS",
+    "employees": "51-200",
+    "region": "NA",
+    "country": "Canada"
+  },
+  {
+    "id": "cmp_003",
+    "name": "Orrin & Vale Health",
+    "domain": "orrin.example",
+    "industry": "Healthcare",
+    "employees": "501-1000",
+    "region": "EMEA",
+    "country": "United Kingdom"
+  },
+  {
+    "id": "cmp_004",
+    "name": "Tessaract Payments",
+    "domain": "tessaract.example",
+    "industry": "Fintech",
+    "employees": "51-200",
+    "region": "EMEA",
+    "country": "Germany"
+  },
+  {
+    "id": "cmp_005",
+    "name": "Lumenwright Manufacturing",
+    "domain": "lumenwright.example",
+    "industry": "Manufacturing",
+    "employees": "1001-5000",
+    "region": "NA",
+    "country": "United States"
+  },
+  {
+    "id": "cmp_006",
+    "name": "Cobaltreach Security",
+    "domain": "cobaltreach.example",
+    "industry": "Cybersecurity",
+    "employees": "201-500",
+    "region": "APAC",
+    "country": "Singapore"
+  },
+  {
+    "id": "cmp_007",
+    "name": "Pinegrove Retail Co.",
+    "domain": "pinegrove.example",
+    "industry": "Retail",
+    "employees": "1001-5000",
+    "region": "NA",
+    "country": "United States"
+  },
+  {
+    "id": "cmp_008",
+    "name": "Halcyon Learning",
+    "domain": "halcyon.example",
+    "industry": "Education",
+    "employees": "11-50",
+    "region": "EMEA",
+    "country": "Netherlands"
+  },
+  {
+    "id": "cmp_009",
+    "name": "Marrowstone Media",
+    "domain": "marrowstone.example",
+    "industry": "Media",
+    "employees": "51-200",
+    "region": "APAC",
+    "country": "Australia"
+  },
+  {
+    "id": "cmp_010",
+    "name": "Quillfeather Legal Tech",
+    "domain": "quillfeather.example",
+    "industry": "SaaS",
+    "employees": "11-50",
+    "region": "EMEA",
+    "country": "Ireland"
+  },
+  {
+    "id": "cmp_011",
+    "name": "Driftwell Properties",
+    "domain": "driftwell.example",
+    "industry": "Real estate",
+    "employees": "201-500",
+    "region": "NA",
+    "country": "United States"
+  },
+  {
+    "id": "cmp_012",
+    "name": "Sableport Freight",
+    "domain": "sableport.example",
+    "industry": "Logistics",
+    "employees": "501-1000",
+    "region": "APAC",
+    "country": "Japan"
+  },
+  {
+    "id": "cmp_013",
+    "name": "Veridian Grid Energy",
+    "domain": "veridian.example",
+    "industry": "Energy",
+    "employees": "1001-5000",
+    "region": "EMEA",
+    "country": "Spain"
+  },
+  {
+    "id": "cmp_014",
+    "name": "Northcairn Robotics",
+    "domain": "northcairn.example",
+    "industry": "Manufacturing",
+    "employees": "51-200",
+    "region": "NA",
+    "country": "United States"
+  }
+]

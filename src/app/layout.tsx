@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import { IBM_Plex_Mono, IBM_Plex_Sans, Space_Grotesk } from "next/font/google";
-import { RevealObserver } from "@/components/reveal-observer";
+import { RevealObserver } from "@/components/animations/reveal-observer";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { site } from "@/content/site";
+import { cn } from "@/lib/utils";
 import "./globals.css";
 
 const display = Space_Grotesk({ subsets: ["latin"], variable: "--font-display-face" });
@@ -20,7 +21,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html
       lang="en"
       data-scroll-behavior="smooth"
-      className={`${display.variable} ${sans.variable} ${mono.variable} scroll-smooth`}
+      className={cn("scroll-smooth", display.variable, sans.variable, mono.variable)}
     >
       <body>
         <SiteHeader />
