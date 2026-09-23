@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import type { CSSProperties, ReactNode } from "react";
 import { cn } from "@/lib/utils";
 
 export type Tone = "paper" | "mist" | "fog" | "ink";
@@ -41,13 +41,18 @@ export function Chip({
   children,
   variant = "default",
   className,
+  style,
 }: {
   children: ReactNode;
   variant?: "default" | "light" | "dark";
   className?: string;
+  style?: CSSProperties;
 }) {
   return (
-    <span className={cn("chip label", variant === "light" && "chip-light", variant === "dark" && "chip-dark", className)}>
+    <span
+      style={style}
+      className={cn("chip label", variant === "light" && "chip-light", variant === "dark" && "chip-dark", className)}
+    >
       {children}
     </span>
   );
