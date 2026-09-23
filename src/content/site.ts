@@ -6,19 +6,26 @@
 
 export const site = {
   name: "sale.leads",
-  nav: [
-    { label: "Product", href: "#product" },
-    { label: "Pipeline", href: "#pipeline" },
-    { label: "How it works", href: "#how" },
-    { label: "FAQ", href: "#faq" },
-  ],
-  cta: { label: "Get started", href: "#start" },
+  nav: {
+    features: {
+      label: "Features",
+      title: "One pipeline, six stages.",
+      body: "Everything between finding a lead and putting it in front of the right rep.",
+      link: { label: "See the full pipeline", href: "/#pipeline" },
+    },
+    links: [
+      { label: "Pricing", href: "/pricing" },
+      { label: "Demo", href: "/demo" },
+    ],
+    login: { label: "Log in", href: "/login" },
+    cta: { label: "Start free trial", href: "/signup" },
+  },
 
   hero: {
     tag: "Lead intelligence for sales teams",
     headline: "Find. Qualify. Enrich. Route. Close.",
     body: "Source, qualify, and route sales leads from one workspace, so reps spend their time in conversations instead of spreadsheets.",
-    primary: { label: "Get started", href: "#start" },
+    primary: { label: "Start free trial", href: "/signup" },
     secondary: { label: "See the pipeline", href: "#pipeline" },
   },
 
@@ -43,12 +50,12 @@ export const site = {
   pipeline: {
     headline: "One Pipeline. Every Lead.",
     items: [
-      { title: "Sourcing", body: "Bring leads in from lists, forms, and research in a single intake." },
-      { title: "Enrichment", body: "Complete each record with firmographic and contact data." },
-      { title: "Deduplication", body: "Merge repeats so one person is one lead, however many times they show up." },
-      { title: "Scoring", body: "Weight fit and intent against the profile of the customers you want." },
-      { title: "Routing", body: "Assign by territory, segment, or round-robin, with no manual triage." },
-      { title: "CRM Sync", body: "Push qualified leads and their history to the system your team already uses." },
+      { id: "sourcing", title: "Sourcing", body: "Bring leads in from lists, forms, and research in a single intake." },
+      { id: "enrichment", title: "Enrichment", body: "Complete each record with firmographic and contact data." },
+      { id: "deduplication", title: "Deduplication", body: "Merge repeats so one person is one lead, however many times they show up." },
+      { id: "scoring", title: "Scoring", body: "Weight fit and intent against the profile of the customers you want." },
+      { id: "routing", title: "Routing", body: "Assign by territory, segment, or round-robin, with no manual triage." },
+      { id: "crm-sync", title: "CRM Sync", body: "Push qualified leads and their history to the system your team already uses." },
     ],
   },
 
@@ -96,7 +103,7 @@ export const site = {
   closing: {
     headline: "Start Prospecting",
     body: "Source, enrich, score, and route sales leads, all in one workspace built for the way sales teams actually work.",
-    cta: { label: "Get started", href: "#start" },
+    cta: { label: "Start free trial", href: "/signup" },
   },
 
   footer: {
@@ -104,18 +111,27 @@ export const site = {
       {
         title: "Product",
         links: [
-          { label: "Sourcing", href: "#product" },
-          { label: "Enrichment", href: "#product" },
-          { label: "Scoring", href: "#pipeline" },
-          { label: "Routing", href: "#pipeline" },
+          { label: "Sourcing", href: "/#sourcing" },
+          { label: "Enrichment", href: "/#enrichment" },
+          { label: "Scoring", href: "/#scoring" },
+          { label: "Routing", href: "/#routing" },
         ],
       },
       {
         title: "Resources",
         links: [
-          { label: "How it works", href: "#how" },
-          { label: "FAQ", href: "#faq" },
+          { label: "How it works", href: "/#how" },
+          { label: "FAQ", href: "/#faq" },
           { label: "Design system", href: "/design" },
+        ],
+      },
+      {
+        title: "Account",
+        links: [
+          { label: "Pricing", href: "/pricing" },
+          { label: "Demo", href: "/demo" },
+          { label: "Log in", href: "/login" },
+          { label: "Start free trial", href: "/signup" },
         ],
       },
     ],

@@ -26,7 +26,7 @@ export function Section({
   return (
     <section
       id={id}
-      className={cn(`tone-${tone}`, lines && "grid-lines", fadeTop && "fade-top", "scroll-mt-24", className)}
+      className={cn(`tone-${tone}`, lines && "grid-lines", fadeTop && "fade-top", className)}
     >
       <div className={cn("container-x", innerClassName)}>{children}</div>
     </section>
@@ -34,7 +34,7 @@ export function Section({
 }
 
 export function BracketTag({ children, className }: { children: ReactNode; className?: string }) {
-  return <span className={cn("bracket-tag label text-sm md:text-base", className)}>{children}</span>;
+  return <span className={cn("bracket-tag label text-[0.6875rem] tracking-[0.08em] sm:text-sm sm:tracking-[0.12em] md:text-base", className)}>{children}</span>;
 }
 
 export function Chip({

@@ -52,13 +52,16 @@
 :root {
   --container: 1440px;
   --gutter: 16px;
+  --header-full: 64px;
+  --header-compact: 64px;
   interpolate-size: allow-keywords;
+  scroll-padding-top: calc(var(--header-full) + 16px);
 }
 @media (min-width: 768px) {
   :root { --gutter: 32px; }
 }
 @media (min-width: 1024px) {
-  :root { --gutter: 64px; }
+  :root { --gutter: 64px; --header-full: 108px; --header-compact: 76px; }
 }
 
 @layer base {
@@ -189,7 +192,9 @@
     transition: transform 0.9s var(--ease-out-soft);
     transition-delay: var(--reveal-delay, 0ms);
   }
-  .js .draw-rule:not([data-visible])::after { transform: scaleX(0); }
+  @media (scripting: enabled) {
+    .draw-rule:not([data-visible])::after { transform: scaleX(0); }
+  }
 
   /* FAQ — native <details>, animated where the browser supports ::details-content. */
   .faq-item summary { list-style: none; cursor: pointer; }
@@ -215,18 +220,270 @@
   .faq-item[open]::details-content { block-size: auto; }
 }
 
-/* Scroll reveal. Hidden state only applies once JS has flagged the page, so no-JS still shows everything. */
+/* Scroll reveal. The hidden state only exists when scripting is on, so no-JS still shows everything. */
 [data-reveal] {
   transition: opacity 0.6s ease-out, transform 0.6s var(--ease-out-soft);
   transition-delay: var(--reveal-delay, 0ms);
 }
-.js [data-reveal]:not([data-visible]) {
-  opacity: 0;
-  transform: translateY(var(--reveal-distance, 32px));
+@media (scripting: enabled) {
+  [data-reveal]:not([data-visible]) {
+    opacity: 0;
+    transform: translateY(var(--reveal-distance, 32px));
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
   [data-reveal], .draw-rule::after, .faq-item::details-content { transition: none; }
-  .js [data-reveal]:not([data-visible]) { opacity: 1; transform: none; }
-  .js .draw-rule:not([data-visible])::after { transform: none; }
+  [data-reveal]:not([data-visible]) { opacity: 1; transform: none; }
+  .draw-rule:not([data-visible])::after { transform: none; }
+}
+
+/* ------------------------------------------------------------------ */
+/* Header + navigation                                                 */
+/* Everything animates transform, opacity, or clip-path. JS only flips  */
+/* data attributes; it never drives a frame loop.                        */
+/* ------------------------------------------------------------------ */
+
+@layer components {
+  .skip-link {
+    position: fixed;
+    top: 12px;
+    left: var(--gutter);
+    z-index: 60;
+    transform: translateY(-160%);
+    transition: transform 0.2s var(--ease-standard);
+  }
+  .skip-link:focus-visible { transform: none; }
+
+  .site-header {
+    position: fixed;
+    inset-inline: 0;
+    top: 0;
+    z-index: 50;
+    height: var(--header-full);
+    transition: height 0.35s var(--ease-standard), transform 0.45s var(--ease-standard);
+  }
+  .site-header[data-scrolled] { height: var(--header-compact); }
+  /* Tucks away on scroll-down; keyboard focus inside brings it straight back. */
+  .site-header[data-hidden]:not(:has(:focus-visible)) { transform: translateY(-100%); }
+
+  .header-surface {
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    background: rgb(255 255 255 / 0.92);
+    backdrop-filter: saturate(1.6) blur(14px);
+    -webkit-backdrop-filter: saturate(1.6) blur(14px);
+    border-bottom: 1px solid var(--color-rule);
+    opacity: 0;
+    transition: opacity 0.3s var(--ease-standard), background-color 0.3s var(--ease-standard);
+  }
+  .site-header[data-scrolled] .header-surface { opacity: 1; }
+  .site-header[data-solid] .header-surface { opacity: 1; background: var(--color-paper); }
+
+  /* Reading progress, driven by the scroll timeline where supported. No JS. */
+  .header-progress {
+    position: absolute;
+    inset-inline: 0;
+    bottom: -1px;
+    height: 2px;
+    background: var(--color-accent);
+    transform: scaleX(0);
+    transform-origin: 0 50%;
+    opacity: 0;
+    transition: opacity 0.3s var(--ease-standard);
+    pointer-events: none;
+  }
+  .site-header[data-scrolled]:not([data-solid]) .header-progress { opacity: 1; }
+  @supports (animation-timeline: scroll()) {
+    .header-progress {
+      animation: header-progress linear both;
+      animation-timeline: scroll(root block);
+    }
+  }
+
+  .logo-dot { display: inline-block; transition: transform 0.35s var(--ease-out-soft); }
+  a:hover > span > .logo-dot { transform: translateY(-4px); }
+
+  .nav-link {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 12px;
+    font-size: 1.125rem;
+    line-height: 1.4;
+    transition: color 0.2s var(--ease-standard);
+  }
+  .nav-link::after {
+    content: "";
+    position: absolute;
+    left: 12px;
+    right: 12px;
+    bottom: 2px;
+    height: 1.5px;
+    background: var(--color-accent);
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.35s var(--ease-out-soft);
+  }
+  .nav-link:hover::after,
+  .nav-link[aria-current="page"]::after,
+  .nav-link[aria-expanded="true"]::after {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+  .nav-chevron { transition: transform 0.3s var(--ease-out-soft); }
+  [aria-expanded="true"] > .nav-chevron { transform: rotate(180deg); }
+
+  /* Features mega panel: unrolls from under the header, items follow in a stagger. */
+  .features-panel {
+    position: absolute;
+    inset-inline: 0;
+    top: 100%;
+    border-bottom: 1px solid var(--color-rule);
+    clip-path: inset(0 0 100% 0);
+    visibility: hidden;
+    transition: clip-path 0.3s var(--ease-standard), visibility 0s linear 0.3s;
+  }
+  .features-panel[data-open] {
+    clip-path: inset(0);
+    visibility: visible;
+    transition: clip-path 0.45s var(--ease-out-soft), visibility 0s;
+  }
+  .panel-item {
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.15s ease-out, transform 0.15s ease-out;
+  }
+  [data-open] .panel-item {
+    opacity: 1;
+    transform: none;
+    transition: opacity 0.4s ease-out, transform 0.5s var(--ease-out-soft);
+    transition-delay: calc(90ms + var(--i, 0) * 35ms);
+  }
+
+  .feature-card {
+    position: relative;
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    gap: 10px;
+    padding: 22px 24px 26px;
+    transition: background-color 0.25s var(--ease-standard);
+  }
+  .feature-card:hover,
+  .feature-card:focus-visible { background: var(--color-mist); }
+  .feature-card:focus-visible { outline-offset: -2px; }
+  .card-arrow {
+    position: absolute;
+    top: 22px;
+    right: 22px;
+    opacity: 0;
+    transform: translateX(-8px);
+    transition: opacity 0.25s var(--ease-standard), transform 0.35s var(--ease-out-soft);
+  }
+  .feature-card:hover .card-arrow,
+  .feature-card:focus-visible .card-arrow { opacity: 1; transform: none; }
+
+  .arrow-link .arrow { transition: transform 0.35s var(--ease-out-soft); }
+  .arrow-link:hover .arrow { transform: translateX(5px); }
+
+  .nav-scrim {
+    position: fixed;
+    inset: 0;
+    z-index: 40;
+    background: rgb(20 20 20 / 0.3);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.35s var(--ease-standard);
+  }
+  .nav-scrim[data-open] { opacity: 1; pointer-events: auto; }
+
+  /* Hamburger: three bars fold into an X. */
+  .burger {
+    position: relative;
+    display: grid;
+    width: 44px;
+    height: 44px;
+    margin-right: -10px;
+    place-items: center;
+  }
+  .burger-bar {
+    position: absolute;
+    left: 11px;
+    right: 11px;
+    top: calc(50% - 0.75px);
+    height: 1.5px;
+    background: currentColor;
+    transition: transform 0.4s var(--ease-out-soft), opacity 0.2s var(--ease-standard);
+  }
+  .burger-bar:nth-of-type(2) { transform: translateY(-6px); }
+  .burger-bar:nth-of-type(4) { transform: translateY(6px); }
+  .burger[aria-expanded="true"] .burger-bar:nth-of-type(2) { transform: rotate(45deg); }
+  .burger[aria-expanded="true"] .burger-bar:nth-of-type(3) { opacity: 0; transform: scaleX(0.2); }
+  .burger[aria-expanded="true"] .burger-bar:nth-of-type(4) { transform: rotate(-45deg); }
+
+  /* Mobile sheet: drops from under the header, rows rise in a stagger. */
+  .mobile-panel {
+    position: fixed;
+    inset: var(--header-full) 0 0;
+    z-index: 45;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    clip-path: inset(0 0 100% 0);
+    visibility: hidden;
+    transition: clip-path 0.35s var(--ease-standard), visibility 0s linear 0.35s;
+  }
+  .mobile-panel[data-open] {
+    clip-path: inset(0);
+    visibility: visible;
+    transition: clip-path 0.55s var(--ease-out-soft), visibility 0s;
+  }
+  .m-item {
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 0.15s ease-out, transform 0.15s ease-out;
+  }
+  .mobile-panel[data-open] .m-item {
+    opacity: 1;
+    transform: none;
+    transition: opacity 0.45s ease-out, transform 0.6s var(--ease-out-soft);
+    transition-delay: calc(140ms + var(--i, 0) * 55ms);
+  }
+  .m-collapse {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.4s var(--ease-standard);
+  }
+  .m-collapse[data-open] { grid-template-rows: 1fr; }
+  .m-collapse > * { min-height: 0; overflow: hidden; }
+  .m-plus { position: relative; width: 16px; height: 16px; flex: none; }
+  .m-plus::before,
+  .m-plus::after {
+    content: "";
+    position: absolute;
+    inset: 50% 0 auto;
+    height: 1.5px;
+    margin-top: -0.75px;
+    background: currentColor;
+    transition: transform 0.35s var(--ease-out-soft);
+  }
+  .m-plus::after { transform: rotate(90deg); }
+  [aria-expanded="true"] > .m-plus::after { transform: rotate(0deg); }
+}
+
+@keyframes header-progress {
+  to { transform: scaleX(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-header, .header-surface, .nav-link::after, .nav-chevron, .features-panel, .features-panel[data-open],
+  .panel-item, [data-open] .panel-item, .mobile-panel, .mobile-panel[data-open], .m-item,
+  .mobile-panel[data-open] .m-item, .m-collapse, .burger-bar, .card-arrow, .nav-scrim, .logo-dot {
+    transition-duration: 0.01ms !important;
+    transition-delay: 0ms !important;
+  }
+  .site-header[data-hidden]:not(:has(:focus-visible)) { transform: none; }
+  .header-progress { display: none; }
 }
