@@ -1,6 +1,6 @@
 import { site } from "@/content/site";
 import { Chip, Section } from "../primitives";
-import { Reveal } from "../reveal";
+import { Reveal } from "@/components/animations/reveal";
 
 /** Chip + display headline + mono meta, separated by rules. */
 export function TaggedList() {
@@ -17,7 +17,7 @@ export function TaggedList() {
               {item.tag}
             </Chip>
             <h3 className="mt-5 max-w-4xl text-d4">{item.title}</h3>
-            <p className="label mt-5 text-xs text-muted md:text-sm">{item.meta}</p>
+            <p className="label mt-5 text-xs text-muted-foreground md:text-sm">{item.meta}</p>
           </Reveal>
         ))}
       </ul>

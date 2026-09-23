@@ -131,14 +131,14 @@ export function FeaturesMenu({ open, onOpenChange }: Props) {
       >
         <div className="container-x grid grid-cols-5">
           <div className="panel-item col-span-2 flex flex-col py-10 pr-12" style={stagger(0)}>
-            <p className="label text-sm text-muted">{label}</p>
+            <p className="label text-sm text-muted-foreground">{label}</p>
             <p className="mt-5 max-w-[13ch] font-display text-[2.25rem] leading-[1.15]">{title}</p>
-            <p className="mt-4 max-w-sm text-muted">{body}</p>
+            <p className="mt-4 max-w-sm text-muted-foreground">{body}</p>
             <Link
               href={link.href}
               onClick={() => close()}
               data-menu-item=""
-              className="arrow-link label mt-auto inline-flex items-center gap-3 self-start pt-8 text-sm hover:text-accent-deep"
+              className="arrow-link label mt-auto inline-flex items-center gap-3 self-start pt-8 text-sm hover:text-brand-deep"
             >
               {link.label}
               <ArrowRight className="arrow" />
@@ -149,9 +149,9 @@ export function FeaturesMenu({ open, onOpenChange }: Props) {
             {items.map((item, i) => (
               <li key={item.id} className="panel-item" style={stagger(i + 1)}>
                 <Link href={`/#${item.id}`} onClick={() => close()} data-menu-item="" className="feature-card">
-                  <span className="label text-xs text-accent-strong">{String(i + 1).padStart(2, "0")}</span>
+                  <span className="label text-xs text-brand-strong">{String(i + 1).padStart(2, "0")}</span>
                   <span className="font-display text-[1.375rem] leading-tight">{item.title}</span>
-                  <span className="text-[0.9375rem] leading-relaxed text-muted">{item.body}</span>
+                  <span className="text-[0.9375rem] leading-relaxed text-muted-foreground">{item.body}</span>
                   <ArrowRight className="card-arrow" />
                 </Link>
               </li>

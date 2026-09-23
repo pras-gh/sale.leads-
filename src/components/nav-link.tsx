@@ -3,9 +3,9 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import type { ReactNode } from "react";
-import { cn } from "@/lib/cn";
+import { cn } from "@/lib/utils";
 
-/** Top-level nav link: accent underline draws in on hover and stays for the current page. */
+/** Top-level nav link: brand underline draws in on hover and stays for the current page. */
 export function NavLink({
   href,
   children,

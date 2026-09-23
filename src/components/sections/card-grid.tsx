@@ -1,6 +1,6 @@
 import { site } from "@/content/site";
 import { Chip, Section } from "../primitives";
-import { Reveal } from "../reveal";
+import { Reveal } from "@/components/animations/reveal";
 
 /** Dark three-up columns, each sitting on a grid rule. */
 export function CardGrid() {

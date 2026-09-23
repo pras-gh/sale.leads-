@@ -1,7 +1,7 @@
 import { site } from "@/content/site";
 import { Button } from "../button";
 import { Section } from "../primitives";
-import { Reveal } from "../reveal";
+import { Reveal } from "@/components/animations/reveal";
 
 export function Faq() {
   const { headline, items, contact } = site.faq;

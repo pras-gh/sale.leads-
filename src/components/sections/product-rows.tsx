@@ -1,7 +1,7 @@
 import { site } from "@/content/site";
 import { Button } from "../button";
 import { Section, type Tone } from "../primitives";
-import { Reveal } from "../reveal";
+import { Reveal } from "@/components/animations/reveal";
 
 /** Stacked rows that step down in tone: white, mist, fog. */
 const TONES: Tone[] = ["paper", "mist", "fog"];

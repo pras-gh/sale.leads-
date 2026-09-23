@@ -7,16 +7,16 @@ export const metadata: Metadata = { title: "Design system" };
 const COLORS = [
   { name: "ink", hex: "#141414" },
   { name: "text", hex: "#212121" },
-  { name: "muted", hex: "#626262" },
+  { name: "muted-foreground", hex: "#626262" },
   { name: "subtle", hex: "#757575" },
   { name: "chip", hex: "#cdcdcd" },
   { name: "rule", hex: "#e0e0e0" },
   { name: "fog", hex: "#eaeaea" },
   { name: "mist", hex: "#f5f5f5" },
   { name: "paper", hex: "#ffffff" },
-  { name: "accent", hex: "#ff7756" },
-  { name: "accent-strong", hex: "#fe5f38" },
-  { name: "accent-deep", hex: "#e04b2e" },
+  { name: "brand", hex: "#ff7756" },
+  { name: "brand-strong", hex: "#fe5f38" },
+  { name: "brand-deep", hex: "#e04b2e" },
 ];
 
 const TYPE = [
@@ -31,7 +31,7 @@ const TYPE = [
 const TONES: Tone[] = ["paper", "mist", "fog", "ink"];
 
 function Heading({ children }: { children: string }) {
-  return <h2 className="label mb-8 text-sm text-muted">{children}</h2>;
+  return <h2 className="label mb-8 text-sm text-muted-foreground">{children}</h2>;
 }
 
 export default function DesignPage() {
@@ -53,7 +53,7 @@ export default function DesignPage() {
             <div key={c.name} className="bg-mist p-3">
               <div className="aspect-[4/3] border border-black/5" style={{ background: c.hex }} />
               <p className="label mt-3 text-xs">{c.name}</p>
-              <p className="font-mono text-xs text-muted">{c.hex}</p>
+              <p className="font-mono text-xs text-muted-foreground">{c.hex}</p>
             </div>
           ))}
         </div>
@@ -64,7 +64,7 @@ export default function DesignPage() {
         <div className="divide-y divide-rule border-y border-rule">
           {TYPE.map((t) => (
             <div key={t.token} className="grid gap-3 py-6 md:grid-cols-5 md:items-baseline">
-              <p className="label text-xs text-muted">{t.spec}</p>
+              <p className="label text-xs text-muted-foreground">{t.spec}</p>
               <p className={`md:col-span-4 ${t.className}`}>Qualified leads.</p>
             </div>
           ))}
