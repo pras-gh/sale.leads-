@@ -8,7 +8,7 @@ const TONES: Tone[] = ["paper", "mist", "fog"];
 
 export function ProductRows() {
   return (
-    <div id="product" className="scroll-mt-24">
+    <div id="product">
       {site.products.map((item, i) => (
         <Section key={item.title} tone={TONES[i % TONES.length]}>
           <Reveal className="grid items-center gap-5 py-12 md:grid-cols-10 md:gap-6 md:py-16">

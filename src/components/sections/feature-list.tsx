@@ -14,7 +14,8 @@ export function FeatureList() {
         {items.map((item, i) => (
           <Reveal
             as="li"
-            key={item.title}
+            key={item.id}
+            id={item.id}
             delay={60}
             className="draw-rule grid gap-4 py-9 last:after:hidden md:grid-cols-5 md:items-center md:py-[2.625rem]"
           >

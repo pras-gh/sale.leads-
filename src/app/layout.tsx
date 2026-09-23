@@ -19,16 +19,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html
       lang="en"
+      data-scroll-behavior="smooth"
       className={`${display.variable} ${sans.variable} ${mono.variable} scroll-smooth`}
-      suppressHydrationWarning
     >
-      <head>
-        {/* Flags JS before first paint so reveal-hidden states never flash, and never hide content without JS. */}
-        <script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js')" }} />
-      </head>
       <body>
         <SiteHeader />
-        <main>{children}</main>
+        <main id="content" tabIndex={-1} className="outline-none">
+          {children}
+        </main>
         <SiteFooter />
         <RevealObserver />
       </body>
